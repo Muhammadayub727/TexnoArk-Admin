@@ -5,6 +5,44 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./*"],
+
+      // "@types": ["./src/types"],
+      // "@interface": ["./src/types/interface"],
+      // "@globol-interface": ["./src/types/globol-interface"],
+      // "@enums": ["./src/types/enums"],
+
+      // "@utils": ["./src/utils"],
+      // "@coocse": ["./src/utils/cocies.ts"],
+      // "@hooks": ["./src/hooks"],
+
+      "@components": ["./src/components"],
+      // "@containers": ["./src/components/containers"],
+      // "@modals": ["./src/components/modals"],
+      "@ui": ["./src/components/ui"],
+      // "@sections": ["./src/components/sections"],
+
+      "@pages": ["./src/pages"],
+      "@router": ["./src/router"],
+
+
+      // "@services": ["./src/services"],
+      // "@context": ["./src/context"],
+      // "@category": ["./src/service/category"],
+      // "@worker": ["./src/service/worker"],
+      // "@product": ["./src/service/product"],
+      // "@validations": ["./src/validations"],
+
+
+
+
+      // "@store-categors": ["./src/store/categors"],
+      // "@store-worker": ["./src/store/worker"],
+      // "@store-product": ["./src/store/products"],
+
+      
+  },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
