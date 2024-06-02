@@ -34,7 +34,12 @@ const Index = () => {
 
     const handleSubmit = async(values:SignUp) =>{
         try {
-            const response = await auth.sign_up(values)
+            const formattedPhoneNumber = values.phone_number.replace(/[\s()-]/g, '');
+            const formattedValues = {
+                ...values,
+                phone_number: formattedPhoneNumber,
+            };
+            const response = await auth.sign_up(formattedValues)
             if (response.status === 201) {
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/")},1000)

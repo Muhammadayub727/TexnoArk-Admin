@@ -13,7 +13,7 @@ export const signUpValidationSchema = Yup.object({
         .email("Invalid email address")
         .required("Email is required"),
         password: Yup.string()
-        .min(8, "Password must be at least 8 characters")
+        .min(6, "Password must be at least 8 characters")
         .matches(/[a-z]/, "Password must contain at least one lowercase letter")
         .matches(/\d/, "Password must contain at least one number")
         .required("Password is required"),
@@ -24,7 +24,7 @@ export const signInValidationSchema = Yup.object({
         .email("Invalid email address")
         .required("Email is required"),
         password: Yup.string()
-        .min(8, "Password must be at least 8 characters")
+        .min(6, "Password must be at least 8 characters")
         .matches(/[a-z]/, "Password must contain at least one lowercase letter")
         .matches(/\d/, "Password must contain at least one number")
         .required("Password is required"),
