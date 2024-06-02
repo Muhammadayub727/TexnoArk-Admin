@@ -12,8 +12,8 @@ const index = ()=>{
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" element={<App />}>
-                <Route index element={<SignUP />} />
-                <Route path="/signin" element={<SignIn />} />
+                <Route index element={<SignIn />} />
+                <Route path="/signup" element={<SignUP />} />
                 <Route path="/main/*" element={<Main />} >
                     <Route index element={<Category />} />
                     <Route path="*" element={<Error />} />

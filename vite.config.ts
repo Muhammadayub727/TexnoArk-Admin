@@ -7,27 +7,21 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: '@', replacement: '/src' },
-      { find: '@ui', replacement: '/src/components/ui' },
-      { find: '@components', replacement: '/src/components' },
-      { find: '@pages', replacement: '/src/pages' },
-      { find: '@router', replacement: '/src/router' },
-      // { find: '@validations', replacement: '/src/validations' },
-      // { find: '@modals', replacement: '/src/components/modals' },
-
-
-      // { find: '@coocse', replacement: '/src/utils/cocies.ts' },
-      // { find: '@globol-interface', replacement: '/src/types/globol-interface' },
-
-      // { find: '@category', replacement: '/src/service/category' },
-      // { find: '@worker', replacement: '/src/service/worker' },
-      // { find: '@product', replacement: '/src/service/product' },
-
-
-
-      // { find: '@store-categors', replacement: '/src/store/categors'},
-      // { find: '@store-worker', replacement: '/src/store/worker'},
-      // { find: '@store-product', replacement: '/src/store/products'},
-
+      { find: "@pages", replacement: '/src/pages' },
+      { find: "@ui", replacement: '/src/components/ui' },
+      { find: "@components", replacement: '/src/components'},
+      { find: "@containers", replacement: '/src/components/containers'},
+      { find : "@data-service", replacement : "/src/utils/data-service.ts"},
+      { find: "@hooks", replacement: '/src/hooks'},
+      { find: "@cocies", replacement: '/src/utils/cokies.ts'},
+      { find: "@layout", replacement: '/src/layout'},
+      { find: "@layout", replacement: '/src/layout'},
+      { find: "@router", replacement: '/src/router'},
+      { find: "@images", replacement: '/src/assets/images'},
+      { find: "@servicesAuth", replacement: '/src/service/auth'},
+      { find: "@validation", replacement: '/src/utils/validation.ts'},
+      { find: "@authInterface", replacement: '/src/interface/auth.ts'},
+      { find: "@modals", replacement: '/src/components/modals'}
     ]
   }
 })
