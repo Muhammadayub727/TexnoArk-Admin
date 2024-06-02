@@ -52,7 +52,7 @@ const Index = () => {
                         <h1 className="text-[35px] font-bold sm:text-[40px] md:text-[45px]">TexnoArk</h1>
                     </div>
                     <Typography component="h6" variant="h6" className="text-center">
-                            SIGN In
+                            SIGN IN
                     </Typography>
                     <Formik
                         initialValues={initialValues}
@@ -112,7 +112,7 @@ const Index = () => {
                                         </Grid>
                                     </Grid>
                                         <Button
-                                        // type="submit" 
+                                        type="submit" 
                                         variant="contained" 
                                         color="primary"
                                         disabled={isSubmitting}

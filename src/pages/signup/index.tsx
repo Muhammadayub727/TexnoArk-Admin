@@ -166,7 +166,7 @@ const Index = () => {
                                         </Grid>
                                     </Grid>
                                         <Button
-                                        // type="submit" 
+                                        type="submit" 
                                         variant="contained" 
                                         color="primary"
                                         disabled={isSubmitting}
