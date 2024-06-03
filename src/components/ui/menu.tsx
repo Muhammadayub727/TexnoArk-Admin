@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -93,9 +93,9 @@ return (
         <MenuItem onClick={profile}>
             <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
         <DeleteIcon /> Delete Account
-        </MenuItem>
+        </MenuItem> */}
         <Divider />
         <MenuItem onClick={handleClose}>
         <ListItemIcon>
