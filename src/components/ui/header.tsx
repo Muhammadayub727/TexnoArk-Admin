@@ -1,7 +1,9 @@
-import { AppBar, CssBaseline, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, CssBaseline, IconButton, InputBase, Paper, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import AccountMenu from './menu'
 // import React from 'react'
+import  SearchIcon from "@mui/icons-material/Search"
+
 
 const drawerWidth = 240
 
@@ -29,6 +31,19 @@ const Header = ({handleDrawerToggle}:ModalProps) => {
                 }}
             >
                 <Toolbar>
+                    <Paper
+                        component="form"
+                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+                    >
+                        <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            placeholder="Search Products"
+                            inputProps={{ 'aria-label': 'search google maps' }}
+                        />
+                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                            <SearchIcon/>
+                        </IconButton>
+                    </Paper>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"

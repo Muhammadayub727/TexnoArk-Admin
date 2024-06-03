@@ -31,7 +31,10 @@ const handleClose = () => {
 const logout = () =>{
     removeDataFromCookie("token")
     navigate("/")
-    window.location.reload()
+}
+
+const profile = () =>{
+    navigate("/profile")
 }
 
 return (
@@ -87,8 +90,8 @@ return (
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-        <MenuItem onClick={handleClose}>
-        <Avatar /> Profile
+        <MenuItem onClick={profile}>
+            <Avatar /> Profile
         </MenuItem>
         <MenuItem onClick={handleClose}>
         <DeleteIcon /> Delete Account
