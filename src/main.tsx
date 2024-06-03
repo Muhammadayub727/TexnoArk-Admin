@@ -1,4 +1,4 @@
-import Router from "./router/router.tsx"
+import Router from "./router/index.tsx"
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
