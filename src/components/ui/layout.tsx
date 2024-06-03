@@ -47,11 +47,11 @@ export default function Layout(props:Props) {
             <Divider/>
             <List>
                 {routes.map((item,index) => (
-                    <NavLink to={item.path} key={index} className={item.path === pathname ? "block bg-blue text-white" : "text-white"}>
+                    <NavLink to={item.path} key={index} className={item.path === pathname ? "block bg-blue text-white" : ""}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <span className={item.path === pathname ? "text-white" : "text-white"}>{item.icon}</span>
+                                    <span className={item.path === pathname ? "text-white" : "text-gray-600"}>{item.icon}</span>
                                 </ListItemIcon>
                                 <ListItemText primary={item?.content}/>
                             </ListItemButton>
@@ -65,7 +65,7 @@ export default function Layout(props:Props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', bgcolor: '#f5f5f5'}}>
             <Header handleDrawerToggle={handleDrawerToggle}/>
             <Box    
                 component="nav"
@@ -96,7 +96,7 @@ export default function Layout(props:Props) {
                     variant="permanent"
                     sx={{
                         display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,bgcolor:"#052E65" }
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, }
                     }}
                     open
                 >
@@ -105,7 +105,7 @@ export default function Layout(props:Props) {
                         // onClick={handleDrawerToggle}
                     >
                         <img src={Logo1} alt="Logo" className="w-12 h-32 " />
-                        <h1 className="text-[35px] font-bold text-white">TexnoArk</h1>
+                        <h1 className="text-[35px] font-bold">TexnoArk</h1>
                     </div>
                     {drawer}
                 </Drawer>

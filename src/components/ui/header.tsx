@@ -24,8 +24,7 @@ const Header = ({handleDrawerToggle}:ModalProps) => {
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
-                    
+                    ml: { sm: `${drawerWidth}px` }
                 }}
             >
                 <Toolbar>
