@@ -43,10 +43,10 @@ const Index = () => {
     return (
         <>
             <ToastContainer/>  
-            <div className="h-screen flex items-center justify-center flex-col gap-8 p-5">
+            <div className="h-screen flex items-center justify-center flex-col gap-8 p-5 bg-[#F0F0F0]">
                 {/* <h1 className="text-[35px] font-bold sm:text-[40px] md:text-[50px]">Tizimga kirish</h1> */} 
                     
-                <div className="max-w-[400px]">
+                <div className="max-w-[400px] h-[400px] bg-[#fff] p-5 shadow-2xl rounded-[7px]">
                     <div className="flex items-center justify-center">
                         <img src={Logo} className="mr-2 mt-3"/>
                         <h1 className="text-[35px] font-bold sm:text-[40px] md:text-[45px]">TexnoArk</h1>
@@ -114,7 +114,18 @@ const Index = () => {
                                         <Button
                                         type="submit" 
                                         variant="contained" 
-                                        color="primary"
+                                        // color="primary"
+                                        sx={{
+                                            bgcolor: '#F07427',
+                                            transition: 'all 0.5s ease',
+                                            mt: 2,
+                                            mb: 2,
+                                            ":hover": {
+                                                bgcolor: '#D55200',
+                                                transition: 'all 0.5s ease',
+                                                transform: 'scale(1)'
+                                            }
+                                        }}
                                         disabled={isSubmitting}
                                         fullWidth
                                     >
