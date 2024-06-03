@@ -34,7 +34,7 @@ const logout = () =>{
 }
 
 const profile = () =>{
-    navigate("/profile")
+    navigate("/main/profile")
 }
 
 return (
