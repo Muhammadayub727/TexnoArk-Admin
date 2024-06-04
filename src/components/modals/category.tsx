@@ -125,12 +125,12 @@ export default function ModalCategory({title , id , data}:propsData) {
                 />
                 
                 <Button
-                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
+                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#1EB91E", "&:hover" :{background: "#1EB91E"} }}
                     variant="contained"
                     type="submit"
                     className="w-[100%] py-3"
                 >
-                    to add
+                    Category Add
                 </Button>
                 </Form>
             </Formik>

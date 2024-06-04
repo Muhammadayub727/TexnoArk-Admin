@@ -71,7 +71,7 @@ import {
                                 :header.value == "action2" ? <div className="flex items-center gap-2">
                                     <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>
                                     <ModalCategory title="put" id={body?.id} data={body}/>
-                                    <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
+                                    <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                                 </div>
                                 :header.value == "action3" ? <div className="flex items-center gap-2">
                                 <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>

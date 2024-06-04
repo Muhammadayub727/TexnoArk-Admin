@@ -8,12 +8,7 @@ function index() {
 
   const navigetBtn = () => {
 
-    navigate("/home"); 
-    // if (localStorage.getItem("token")) {
-    //   navigate("/main");
-    // }else{
-    //     navigate("/signin"); 
-    // }
+    navigate("/main"); 
   };
 
   

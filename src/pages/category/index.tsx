@@ -16,7 +16,6 @@ useEffect(() =>{
 },[]);
 
 
- // Props Global teble -------------->
 const theder = [
     {title: "S/N" , value:"t/r"},
     {title: "Category" , value:"category_name"},
