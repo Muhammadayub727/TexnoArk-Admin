@@ -11,5 +11,5 @@ export interface Props {
     heders: Heder[];
     body: Body[];
     skelatonLoader: boolean;
-    deletIdData:(id:string)=> any;
+    deletIdData?:(id:string)=> any;
 }

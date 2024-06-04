@@ -20,7 +20,10 @@
       "@servicesAuth": ["./src/service/auth"],
       "@validation": ["./src/utils/validation.ts"],
       "@authInterface": ["./src/interface/auth.ts"],
-      "@modals": ["./src/components/modals"]
+      "@modals": ["./src/components/modals"],
+      // "@category_store": ["./src/store/category_store.ts"],
+      // "@brand_store": ["./src/store/category_store"],
+
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

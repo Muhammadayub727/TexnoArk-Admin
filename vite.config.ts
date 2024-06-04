@@ -21,7 +21,9 @@ export default defineConfig({
       { find: "@servicesAuth", replacement: '/src/service/auth'},
       { find: "@validation", replacement: '/src/utils/validation.ts'},
       { find: "@authInterface", replacement: '/src/interface/auth.ts'},
-      { find: "@modals", replacement: '/src/components/modals'}
+      { find: "@modals", replacement: '/src/components/modals'},
+      // { find: '@category_store', replacement: '/src/store/category-store'},
+      // { find: '@brand-store', replacement: '/src/store/brand-store'},
     ]
   }
 })
