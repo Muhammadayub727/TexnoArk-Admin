@@ -37,6 +37,14 @@ const profile = () =>{
     navigate("/main/profile")
 }
 
+const addAccount = () =>{
+    navigate("/signup")
+}
+
+const settings = () =>{
+    navigate("/main/settings")
+}
+
 return (
     <React.Fragment>
     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -97,13 +105,13 @@ return (
         <DeleteIcon /> Delete Account
         </MenuItem> */}
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={addAccount}>
         <ListItemIcon>
             <PersonAdd fontSize="small" />
         </ListItemIcon>
         Add another account
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={settings}>
         <ListItemIcon>
             <Settings fontSize="small" />
         </ListItemIcon>
