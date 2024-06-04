@@ -28,6 +28,7 @@ const Index = () => {
         try {
             const response = await auth.sign_in(values)
             if (response.status === 201) {
+                setDataToCookie("admin_id", response?.data?.admin?.id);
                 setDataToCookie("token",response?.data?.tokens?.access_token)
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
