@@ -10,6 +10,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { signInValidationSchema } from "../../utils/validations"
 import auth from "@servicesAuth"
 import Logo from "../../assets/icon/TexnoArkLogo.svg"
+import { useMask } from "@react-input/mask"
 
 
 
@@ -20,14 +21,23 @@ const Index = () => {
     const navigate = useNavigate()
 
     const initialValues:SignIn = {
-        email: "",
+        PhoneNumber: "",
         password: "",
     }
+    const inputRef = useMask({
+        mask: "+998 (__) ___-__-__",
+        replacement: { _: /\d/ },
+    });
 
     const handleSubmit = async(values:SignIn) =>{
         try {
-            const response = await auth.sign_in(values)
-            if (response.status === 201) {
+            const formattedPhoneNumber = values.PhoneNumber.replace(/[\s()-]/g, '');
+            const formattedValues = {
+                ...values,
+                PhoneNumber: formattedPhoneNumber,
+            };
+            const response = await auth.sign_in(formattedValues)
+            if (response.status === 200) {
                 setDataToCookie("admin_id", response?.data?.admin?.id);
                 setDataToCookie("token",response?.data?.tokens?.access_token)
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
@@ -61,16 +71,17 @@ const Index = () => {
                             {({ isSubmitting }) => (
                                 <Form>
                                     <Field
-                                        name="email"
-                                        type="email"
+                                        name="PhoneNumber"
+                                        type="text"
                                         as={TextField}
-                                        label="Email"
+                                        label="Telefon raqam"
                                         className="w-full"
                                         margin="normal"
                                         variant="outlined"
+                                        inputRef={inputRef}
                                         helperText={
                                             <ErrorMessage
-                                                name="email"
+                                                name="PhoneNumber"
                                                 component="p"
                                                 className="text-red-500 text-[15px]"
                                             />

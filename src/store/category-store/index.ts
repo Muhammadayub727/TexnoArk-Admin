@@ -89,7 +89,7 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
                     }
                     
                     }catch(error:any){
-                        console.log(error)
+                        console.log(error)  
                     }
             }
         },

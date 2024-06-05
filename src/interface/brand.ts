@@ -1,6 +1,5 @@
 import request from "../service/config"
 
-// ----------------> Interface Services Brand <-------------------------------------
 export interface postData{
     brand_name: string;
     brand_description: string;
@@ -21,7 +20,6 @@ interface Brand{
     update : (data:UpdateData)=> any,
 }
 
-// ---------> Interface Srore Brand <--------------------
 export interface StoreBrand {
     isLoader:boolean;
     dataBrands:any[];
@@ -35,7 +33,6 @@ export interface StoreBrand {
 
 
 
-// ----------------> Instance Brand <----------------------------
 export const brand:Brand = {
     post: (data)=> request.post("/api/brand/create" , data),
     delete: (id)=> request.delete(`/api/brand/delete/${id}`),
