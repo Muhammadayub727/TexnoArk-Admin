@@ -34,10 +34,10 @@ const Index = () => {
 
     const handleSubmit = async(values:SignUp) =>{
         try {
-            const formattedPhoneNumber = values.phone_number.replace(/[\s()-]/g, '');
+            const formattedphone_number = values.phone_number.replace(/[\s()-]/g, '');
             const formattedValues = {
                 ...values,
-                phone_number: formattedPhoneNumber,
+                phone_number: formattedphone_number,
             };
             const response = await auth.sign_up(formattedValues)
             if (response.status === 201) {

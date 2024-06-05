@@ -3,7 +3,7 @@ import request from "../service/config"
 export interface postCategory{
     category_name: string,
     parent_category_id?: number | null ,
-    positon?: number | null
+    // positon?: number | null
 }
 
 export interface UpdateCategory {
@@ -11,16 +11,20 @@ export interface UpdateCategory {
     updateData : postCategory
 }
 
+export interface GetCatigory{
+    page:number,
+    limit:number,
 
+}
 
 
 interface Category{
-    getCatigory : ()=> any,
+    getCatigory : (params:GetCatigory)=> any,
     postCatigory : (data:postCategory)=> any,
     deleteCategory : (id:number)=> any,
     updateCategory : (data:UpdateCategory)=> any,
 
-    getSubCategoryId: (id:number)=> any,
+    // getSubCategoryId: (id:number)=> any,
 }
 
 
@@ -38,10 +42,10 @@ export interface StoreCategory {
 }
 
 export const category:Category = {
-    getCatigory: ()=> request.get(`/api/category/get-all-category/q`),
-    postCatigory: (data)=> request.post("/api/category/create" , data),
-    deleteCategory: (id)=> request.delete(`/api/category/delete/${id}`),
-    updateCategory: (data)=> request.put(`/api/category/update/${data.id}`, data.updateData),
+    getCatigory: (params)=> request.get(`/category?page=${params.page}&limit=${params.limit}`),
+    postCatigory: (data)=> request.post("/category" , data),
+    deleteCategory: (id)=> request.delete(`/category/${id}`),
+    updateCategory: (data)=> request.put(`/category/${data.id}`, data.updateData),
 
-    getSubCategoryId: (id)=> request.get(`/api/category/get-all-subcategory/${id}/q`)
+    // getSubCategoryId: (id)=> request.get(`/api/category/get-all-subcategory/${id}/q`)
 }

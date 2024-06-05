@@ -21,7 +21,7 @@ const Index = () => {
     const navigate = useNavigate()
 
     const initialValues:SignIn = {
-        PhoneNumber: "",
+        phone_number: "",
         password: "",
     }
     const inputRef = useMask({
@@ -31,15 +31,15 @@ const Index = () => {
 
     const handleSubmit = async(values:SignIn) =>{
         try {
-            const formattedPhoneNumber = values.PhoneNumber.replace(/[\s()-]/g, '');
+            const formattedphone_number = values.phone_number.replace(/[\s()-]/g, '');
             const formattedValues = {
                 ...values,
-                PhoneNumber: formattedPhoneNumber,
+                phone_number: formattedphone_number,
             };
             const response = await auth.sign_in(formattedValues)
             if (response.status === 200) {
-                setDataToCookie("admin_id", response?.data?.admin?.id);
-                setDataToCookie("token",response?.data?.tokens?.access_token)
+                setDataToCookie("access_token", response?.data?.data?.token);
+                setDataToCookie("admin_data", response?.data?.data?.admin)
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
             }
@@ -71,17 +71,18 @@ const Index = () => {
                             {({ isSubmitting }) => (
                                 <Form>
                                     <Field
-                                        name="PhoneNumber"
+                                        name="phone_number"
                                         type="text"
                                         as={TextField}
                                         label="Telefon raqam"
                                         className="w-full"
                                         margin="normal"
                                         variant="outlined"
+                                        autoComplete="off"
                                         inputRef={inputRef}
                                         helperText={
                                             <ErrorMessage
-                                                name="PhoneNumber"
+                                                name="phone_number"
                                                 component="p"
                                                 className="text-red-500 text-[15px]"
                                             />
@@ -95,6 +96,7 @@ const Index = () => {
                                         className="w-full"
                                         margin="normal"
                                         variant="outlined"
+                                        autoComplete="off"
                                         helperText={
                                             <ErrorMessage 
                                                 name="password"
@@ -152,3 +154,4 @@ const Index = () => {
 }
 
 export default Index
+
