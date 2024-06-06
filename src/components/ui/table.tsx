@@ -10,10 +10,10 @@ import {
     TableSortLabel,
     Paper,
     Skeleton,
-    Button,
+    // Button,
 } from "@mui/material";
-    import VisibilityIcon from '@mui/icons-material/Visibility';
-    import { useNavigate } from "react-router-dom";
+    // import VisibilityIcon from '@mui/icons-material/Visibility';
+    // import { useNavigate } from "react-router-dom";
 
     import { Props } from "../../interface/global";
     import  ModalBrand from "../modals/brand"
@@ -21,79 +21,86 @@ import {
     import ModalDelete from "../modals/delete"
     import SubCategory from "../modals/subCategory";
 
+
     function GLobalTable({ heders, body, skelatonLoader }: Props) {
 
-    const navigate = useNavigate();
-    return (
+        // const navigate = useNavigate();
+        // const [searchPaams] = useSearchParams();
+        // const page = Number(searchPaams.get("page")) || 1;
+        // const limit = Number(searchPaams.get("limit")) || 8;
+    
+    
+        return (
         <>
-        
-        <Box sx={{ width: "100%" }}>
+            
+            <Box sx={{ width: "100%" }}>
             <Paper sx={{ width: "100%", mb: 2 }}>
-            <TableContainer>
+                <TableContainer>
                 <Table
-                sx={{ minWidth: 750 }}
-                aria-labelledby="tableTitle"
-                size="medium"
-            >
-                <TableHead>
+                    sx={{ minWidth: 750 }}
+                    aria-labelledby="tableTitle"
+                    size="medium"
+                >
+                    <TableHead>
                     <TableRow>
-                        {heders?.map((header:any, index:any) => {
+                        {heders?.map((heder, index) => {
                         return (
                             <TableCell key={index}>
-                            <TableSortLabel>{header.title}</TableSortLabel>
+                            <TableSortLabel>{heder.title}</TableSortLabel>
                             </TableCell>
                         );
                         })}
                     </TableRow>
-                </TableHead>
-                <TableBody>
+                    </TableHead>
+                    <TableBody>
                     {
                         skelatonLoader ? Array.from(new Array(5)).map((_, index)=>{
                         return <TableRow key={index}>
                             {
-                            heders?.map((_:any, item:any)=>{
-                                return <TableCell key={item}><Skeleton /></TableCell>
+                            heders?.map((_, index2)=>{
+                                return <TableCell key={index2}><Skeleton /></TableCell>
                             })
                             }
                         </TableRow> 
-                    })
-
-                    :  body?.length > 0 ?  
-                    body?.map((body:any, index:any)=>{
-                        return <TableRow key={index}>
+                        })
+    
+                        :  body?.length > 0 ?  
+                        body?.map((body, index)=>{
+                            return <TableRow key={index}>
                             {
-                            heders?.map((header:any, item:any)=>{
-                                return <TableCell key={item}>{
-                                header.value == "action" ? <div className="flex items-center gap-2">
-                                    <button className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></button>
+                                heders?.map((heder, index2)=>{
+                                return <TableCell key={index2}>{
+                                    heder.value == "action" ? <div className="flex items-center gap-2">
+                                        <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></div>
                                         <ModalBrand title="put" id={body?.id} data={body}/>
-                                </div>
-                                :header.value == "action2" ? <div className="flex items-center gap-2">
-                                    <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>
+                                    </div>
+                                    :heder.value == "action2" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                                     <ModalCategory title="put" id={body?.id} data={body}/>
-                                    <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
+                                    {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
+                                    </div>
+                                    :heder.value == "action3" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
+                                    <SubCategory title="put" id={body?.id} data={body}/>
                                 </div>
-                                :header.value == "action3" ? <div className="flex items-center gap-2">
-                                <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>
-                                <SubCategory title="put" id={body?.id} data={body}/>
-                            </div>
-                                : header.value == "t/r" ? <p>{index + 1 }</p>
-                                : (body[header.value])
+                                    : heder.value == "t/r" ? <p>{index + 1 }</p>
+                                    : (body[heder.value])
                                 }</TableCell>
-                            })
+                                })
                             }
-                        </TableRow>
+                            </TableRow>
                         })
                         : <TableRow>
-                        <TableCell colSpan={heders?.length}>No information yet</TableCell>
+                            <TableCell colSpan={heders?.length}>No information yet</TableCell>
                         </TableRow>
                     }
-                </TableBody>
+                    </TableBody>
                 </Table>
-            </TableContainer>
+                </TableContainer>
             </Paper>
-        </Box>
+            </Box>
         </>
-    );
-}
-export default GLobalTable;
+        );
+    }
+    
+    export default GLobalTable;

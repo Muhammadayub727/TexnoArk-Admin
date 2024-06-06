@@ -12,130 +12,136 @@ import {postCategory} from "../../interface/category"
 
 
 const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+        position: "absolute" as "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        bgcolor: "background.paper",
+        border: "2px solid #000",
+        boxShadow: 24,
+        p: 4,
     };
-
+    
     interface propsData{
-    title: string;
-    id?: number;
-    data?: any;
+        title: string;
+        id?: string;
+        data?: any;
     }
-
-export default function ModalCategory({title , id , data}:propsData) {
-    const { postDatacategory , updateDataCategory } = useCategoryStore();
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
-    const validationSchema = Yup.object().shape({
-        category_name: Yup.string().required("Name is required"),
-    });
-
-    const initialValues: postCategory = {
-        category_name: data?.category_name || "", 
-    };
-
-    const handelSubmit = async (value:postCategory ) => {
-        const postValue = { category_name: value.category_name , parent_category_id:null , positon: null}
+    
+    export default function BasicModal({title , id , data}:propsData) {
+        const { postDatacategory , updateDataCategory } = useCategoryStore();
+    
+        const [open, setOpen] = React.useState(false);
+        const handleOpen = () => setOpen(true);
+        const handleClose = () => setOpen(false);
+    
+        /// my code start <-----------------------------
+    
+    
+        const validationSchema = Yup.object().shape({
+        name: Yup.string().required("Name is required"),
+        // parent_category_id: Yup.number().min(0, "must be at least greater than 0"),
+        // position: Yup.number().min(0, "must be at least greater than 0"),
+        });
+    
+        const initialValues: postCategory = {
+        name: data?.name || "", 
+        };
+    
+        const handelSubmit = async (value:postCategory ) => {
+        // const postValue = { name: value.name , parent_category_id:0 }
         if(!id){
-        const status = await postDatacategory(postValue);
-        if (status === 201) {
-        toast.success("success full");
-        handleClose();
-        } else {
+            const status = await postDatacategory(value);
+            if (status === 201) {
+            toast.success("success full");
+            handleClose();
+            } else {
             toast.error("Error :" + status);
             handleClose();
-        }
+            }
         }else{
-        const updateData= {id:id, updateData : postValue}
-        const status = await updateDataCategory(updateData);
-        if (status === 200) {
-        toast.success("update success full"); 
-        handleClose();
-        } else {
+            const updateData= {id:id, updateData : value}
+            const status = await updateDataCategory(updateData);
+            if (status === 200) {
+            toast.success("update success full"); 
+            handleClose();
+            } else {
             toast.error("Error :" + status);
             handleClose();
+            }
         }
-        }
-    };
-
-
-    return (
+        };
+    
+        // my code end <--------------------------------
+    
+        return (
         <div>
-        {
+            {
             title == "post" ? 
             <button
             onClick={handleOpen}
-            className="py-2 px-6 text-white font-semibold rounded-lg bg-[#1EB91E]"
-        >
-            Category add
-        </button> : 
-        <Button
+            className="py-2 px-6 text-white font-semibold bg-[#D52200] hover:bg-[#9c4837] active:bg-[#D52200] duration-200 rounded-lg"
+            >
+            To add
+            </button> : 
+            <Button
             color="inherit"
             onClick={handleOpen}
             sx={{ 
-                color: '#767676'
+                color: '#767676' // HEX formatida rang
             }}
-        >
+            >
             <EditIcon  />
-        </Button>
-        }
-        <Modal
+            </Button>
+            }
+            <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-        >
+            >
             <Box sx={style}>
-            <Formik
+                <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handelSubmit}
-            >
+                >
                 <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
-                <h1 className="text-center mb-2 text-[26px] font-bold">
+                    <h1 className="text-center mb-2 text-[26px] font-bold">
                     {
-                    title == "post"? "Add a category" : "Edit a category"
+                        title == "post"? "Add a category" : "Edit a category"
                     }
-                </h1>
-                <Field
+                    </h1>
+                    <Field
                     as={TextField}
                     label="Category name"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                     type="text"
-                    name="category_name"
+                    name="name"
                     className=" w-[100%]  mb-3 outline-none py-0"
                     helperText={
-                    <ErrorMessage
-                        name="category_name"
+                        <ErrorMessage
+                        name="name"
                         component="p"
                         className="mb-3 text-red-500 text-center"
-                    />
+                        />
                     }
-                />
-                
-                <Button
-                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#1EB91E", "&:hover" :{background: "#1EB91E"} }}
+                    />
+                    
+                    <Button
+                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
                     variant="contained"
                     type="submit"
                     className="w-[100%] py-3"
-                >
-                    Category Add
-                </Button>
+                    >
+                    to add
+                    </Button>
                 </Form>
-            </Formik>
+                </Formik>
             </Box>
-        </Modal>
+            </Modal>
         </div>
-    );
-}
+        );
+    }
+    

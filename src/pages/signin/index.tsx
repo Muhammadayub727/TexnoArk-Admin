@@ -39,7 +39,7 @@ const Index = () => {
             const response = await auth.sign_in(formattedValues)
             if (response.status === 200) {
                 setDataToCookie("access_token", response?.data?.data?.token);
-                setDataToCookie("admin_data", response?.data?.data?.admin)
+                setDataToCookie("admin_id", response?.data?.data?.admin?.id)
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
             }

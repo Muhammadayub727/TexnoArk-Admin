@@ -11,3 +11,9 @@ export const setDataToCookie = (title: string, data: string) => {
 export const removeDataFromCookie = (title: string) => {
     Cookies.remove(title);
 }
+
+export const removeCookiesAll =(removNames:string[]) => {
+    return removNames.forEach((name) =>{
+        Cookies.remove(name)
+    })
+}

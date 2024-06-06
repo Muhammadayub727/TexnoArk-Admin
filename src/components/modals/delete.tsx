@@ -1,141 +1,90 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import { toast } from "react-toastify";
-import * as Yup from "yup";
-import { Field, Formik, Form, ErrorMessage } from "formik";
-import { Button, TextField } from "@mui/material";
-import EditIcon from '@mui/icons-material/Edit';
-
+import { Button} from "@mui/material";
+import Menu from '@mui/material/Menu';
+import Fade from '@mui/material/Fade';
+import DeleteIcon from "@mui/icons-material/Delete";
 import useCategoryStore from "../../store/category-store";
-import {postCategory} from "../../interface/category"
+import useBrandStore from "../../store/brand-store";
 
 
-const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-    };
 
-    interface propsData{
-    title: string;
-    id?: number;
-    data?: any;
-    }
-
-    export default function ModalDelete({title , id , data}:propsData) {
-    const { postDatacategory , updateDataCategory } = useCategoryStore();
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
-    const validationSchema = Yup.object().shape({
-        category_name: Yup.string().required("Name is required"),
-    });
-
-    const initialValues: postCategory = {
-        category_name: data?.category_name || "", 
-    };
-
-    const handelSubmit = async (value:postCategory ) => {
-        const postValue = { category_name: value.category_name , parent_category_id:null , positon: null}
-        if(!id){
-        const status = await postDatacategory(postValue);
-        if (status === 201) {
-        toast.success("success full");
-        handleClose();
-        } else {
-            toast.error("Error :" + status);
-            handleClose();
-        }
-        }else{
-        const updateData= {id:id, updateData : postValue}
-        const status = await updateDataCategory(updateData);
-        if (status === 200) {
-        toast.success("update success full"); 
-        handleClose();
-        } else {
-            toast.error("Error :" + status);
-            handleClose();
+    export default function FadeMenu({id , title}:{id:number , title : string}) {
+        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+        const open = Boolean(anchorEl);
+        const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+        };
+        const handleClose = () => {
+        setAnchorEl(null);
+        };
+    
+        // my function start ----------------------
+    const {deleteBrand} = useBrandStore();
+    const {deleteDataCategory} = useCategoryStore()
+    
+        
+        const deleteData = async() => {
+        if(title == "brand"){
+            try{
+                const staus = await deleteBrand(id)
+            if(staus === 200){
+                handleClose()
+                toast.success("Brand deleted successfully")
+            } 
+            }catch(err:any){
+                toast.error("Error " + err?.message)
+                console.log(err);
+            }
+        }else if (title == "category"){
+            try{
+                const staus = await deleteDataCategory(id)
+            if(staus === 200){
+                handleClose()
+                toast.success("Category deleted successfully")
+            } 
+            }catch(err:any){
+                toast.error("Error " + err?.message)
+                console.log(err);
+            }
         }
         }
-    };
-
-
-    return (
+    
+        // my function end ----------------------
+    
+        return (
         <div>
-        {
-            title == "post" ? 
-            <button
-            onClick={handleOpen}
-            className="py-2 px-6 text-white font-semibold bg-[#D52200] hover:bg-[#9c4837] active:bg-[#D52200] duration-200 rounded-lg"
-        >
-            To add
-        </button> : 
-        <Button
+            <Button
+            id="fade-button"
+            aria-controls={open ? 'fade-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
             color="inherit"
-            onClick={handleOpen}
-            sx={{ 
-            color: '#767676'
+            
+            >
+            <DeleteIcon/>
+            </Button>
+            <Menu
+            id="fade-menu"
+            MenuListProps={{
+                'aria-labelledby': 'fade-button',
             }}
-        >
-            <EditIcon  />
-        </Button>
-        }
-        <Modal
+            anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={style}>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handelSubmit}
+            TransitionComponent={Fade}
+            sx={{marginTop: 1}}
             >
-                <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
-                <h1 className="text-center mb-2 text-[26px] font-bold">
-                    {
-                    title == "post"? "Add a category" : "Edit a category"
-                    }
-                </h1>
-                <Field
-                    as={TextField}
-                    label="Category name"
-                    sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                    type="text"
-                    name="category_name"
-                    className=" w-[100%]  mb-3 outline-none py-0"
-                    helperText={
-                    <ErrorMessage
-                        name="category_name"
-                        component="p"
-                        className="mb-3 text-red-500 text-center"
-                    />
-                    }
-                />
-                
-                <Button
-                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
-                    variant="contained"
-                    type="submit"
-                    className="w-[100%] py-3"
-                >
-                    to add
-                </Button>
-                </Form>
-            </Formik>
-            </Box>
-        </Modal>
+            <div className='px-4 py-2'>
+                <h3 className=''>Are you sure you want to delete?</h3>
+                <div className='flex items-center justify-end gap-3 mt-2'>
+                    <button onClick={handleClose} className='py-1 px-2 rounded-md bg-[#D52200] text-white'>No</button>
+                    <button onClick={deleteData} className='py-1 px-2 rounded-md bg-[#D52200] text-white'>Yes</button>
+                </div>
+            </div>
+            
+            </Menu>
         </div>
-    );
-}
+        );
+    }

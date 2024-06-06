@@ -1,21 +1,26 @@
-
+import axios from 'axios';
 import { create } from 'zustand' ;
 import { toast } from 'react-toastify'; 
 import { brand ,StoreBrand } from '../../interface/brand';
+import {getDataFromCookie} from "../../utils/data-service" 
 
 
-const useBrandStore = create <StoreBrand> ((set)=>({
-    isLoader: false,
-    dataBrands: [],
-    totlCount: 0,
-        getBrand : async()=>{
+
+
+
+
+    const useBrandStore = create <StoreBrand> ((set)=>({
+        isLoader: false,
+        dataBrands: [],
+        totlCount: 0,
+        getBrand : async(data)=>{
             try{
             set({isLoader: true})
-            const respons = await brand.get()
+            const respons = await brand.get(data)
             //    console.log(respons)
             if(respons.status === 200){
-                set({dataBrands: respons?.data?.brands});
-                set({totlCount: respons?.data?.count})
+                set({dataBrands: respons?.data?.data});
+                //    set({totlCount: respons?.data?.count})
             }
             set({isLoader: false})
         }catch(error){
@@ -25,17 +30,24 @@ const useBrandStore = create <StoreBrand> ((set)=>({
         
         },
         postBrand: async(data)=>{
-            try{
-            const respons = await brand.post(data)
-            //    console.log(respons)
-            if(respons.status === 201){
-                set((state)=>({dataBrands: [...state.dataBrands, respons?.data?.brand]})) 
-                set((state)=>({totlCount: state.totlCount += 1}))
-                return respons?.status
+            try {
+                const response = await axios.post('https://ecomapi.ilyosbekdev.uz/brand', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                getDataFromCookie("acsses_token");
+                console.log(response);
+                if (response.status === 201) {
+                    set((state) => ({ dataBrands: [...state.dataBrands, { ...data, product_id: response?.data?.id }] }));
+                    toast.success("Successfully added");
+                    return response?.status;
+                }
+            } catch (error) {
+                console.log(error);
+                toast.error("Error: ");
             }
-            }catch(error){
-                console.log(error)
-            }
+
         },
         deleteBrand: async(id)=>{
             try{
@@ -45,7 +57,7 @@ const useBrandStore = create <StoreBrand> ((set)=>({
                 set((state)=>({dataBrands: state.dataBrands.filter((el:any)=>el.id!== id)})) 
                 set((state)=>({totlCount: state.totlCount -= 1}))
                 toast.success("Deleted successfully")
-            }    
+            }
             }catch(error:any){
                 console.log(error)
             }
@@ -63,6 +75,6 @@ const useBrandStore = create <StoreBrand> ((set)=>({
             }
         }
 
-}))
+    }))
 
-export default useBrandStore
+    export default useBrandStore
