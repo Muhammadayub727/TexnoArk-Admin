@@ -19,7 +19,6 @@ import useBrandStore from "../../store/brand-store";
         setAnchorEl(null);
         };
     
-        // my function start ----------------------
     const {deleteBrand} = useBrandStore();
     const {deleteDataCategory} = useCategoryStore()
     
@@ -50,7 +49,6 @@ import useBrandStore from "../../store/brand-store";
         }
         }
     
-        // my function end ----------------------
     
         return (
         <div>

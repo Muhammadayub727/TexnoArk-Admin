@@ -1,4 +1,4 @@
-import { SignUp } from "@authInterface"
+import { Signup } from "@authInterface"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
@@ -19,7 +19,7 @@ const Index = () => {
 
     const navigate = useNavigate()
 
-    const initialValues:SignUp = {
+    const initialValues:Signup = {
         first_name: "",
         last_name: "",
         phone_number: "",
@@ -32,14 +32,14 @@ const Index = () => {
         replacement: { _: /\d/ },
     });
 
-    const handleSubmit = async(values:SignUp) =>{
+    const handleSubmit = async(values:Signup) =>{
         try {
             const formattedphone_number = values.phone_number.replace(/[\s()-]/g, '');
             const formattedValues = {
                 ...values,
                 phone_number: formattedphone_number,
             };
-            const response = await auth.sign_up(formattedValues)
+            const response = await auth.signup(formattedValues)
             if (response.status === 201) {
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/")},1000)

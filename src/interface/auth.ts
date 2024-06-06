@@ -1,13 +1,15 @@
 
 export interface Signin{
-    email: string;
+    phone_number:string,
     password: string;
 }
 
-export interface Signup extends Signin{
+export interface Signup{
     first_name: string;
     last_name: string;
     phone_number: string;
+    email:string,
+    password:string
 }
 
 export interface AdminUpdate {

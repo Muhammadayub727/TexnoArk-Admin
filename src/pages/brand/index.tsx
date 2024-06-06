@@ -9,14 +9,11 @@ function index() {
     const {getBrand , dataBrands , isLoader} = useBrandStore();
     const [ params , ] = useState({limit: 10, page:1})
     
-    // -> Function getBrand -------------->
     useEffect(() => {
       getBrand(params);
     }, []);
-    // <- Function getBrand <--------------
   
   
-    // Props Global teble -------------->
     const theder = [
       {title: "S/N" , value:"t/r"},
       {title: "Brand" , value:"name"},

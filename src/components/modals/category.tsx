@@ -81,9 +81,9 @@ const style = {
             title == "post" ? 
             <button
             onClick={handleOpen}
-            className="py-2 px-6 text-white font-semibold bg-[#D52200] hover:bg-[#9c4837] active:bg-[#D52200] duration-200 rounded-lg"
+            className="py-2 px-6 text-white font-semibold bg-[#1EB91E] hover:bg-[#1EB91E] active:bg-[#1EB91E] duration-200 rounded-lg"
             >
-            To add
+            Category Add
             </button> : 
             <Button
             color="inherit"
@@ -130,12 +130,12 @@ const style = {
                     />
                     
                     <Button
-                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
+                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#1EB91E", "&:hover" :{background: "#1EB91E"} }}
                     variant="contained"
                     type="submit"
                     className="w-[100%] py-3"
                     >
-                    to add
+                    Category Add
                     </Button>
                 </Form>
                 </Formik>

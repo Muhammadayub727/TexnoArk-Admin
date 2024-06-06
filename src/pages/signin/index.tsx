@@ -1,4 +1,4 @@
-import { SignIn } from "@authInterface"
+import { Signin } from "@authInterface"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
@@ -20,7 +20,7 @@ const Index = () => {
 
     const navigate = useNavigate()
 
-    const initialValues:SignIn = {
+    const initialValues:Signin = {
         phone_number: "",
         password: "",
     }
@@ -29,14 +29,14 @@ const Index = () => {
         replacement: { _: /\d/ },
     });
 
-    const handleSubmit = async(values:SignIn) =>{
+    const handleSubmit = async(values:Signin) =>{
         try {
             const formattedphone_number = values.phone_number.replace(/[\s()-]/g, '');
             const formattedValues = {
                 ...values,
                 phone_number: formattedphone_number,
             };
-            const response = await auth.sign_in(formattedValues)
+            const response = await auth.signin(formattedValues)
             if (response.status === 200) {
                 setDataToCookie("access_token", response?.data?.data?.token);
                 setDataToCookie("admin_id", response?.data?.data?.admin?.id)

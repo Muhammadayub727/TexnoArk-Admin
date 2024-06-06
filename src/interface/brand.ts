@@ -41,9 +41,9 @@ export interface StoreBrand {
 
 
 export const brand:Brand = {
-    get: (data)=> request.get(`/brand?limit=${data.limit}&page=${data.page}`),
-    
+    // get: (data)=> request.get(`/brand?limit=${data.limit}&page=${data.page}`),
+    get:(data)=> request.get(`/brand/search?limit=10&page=1`,{data}),
     post: (data)=> request.post("/brand" , data),
-    delete: (id)=> request.delete(`/api/brand/delete/${id}`),
+    delete: (id)=> request.delete(`/brand/${id}`),
     update: (data)=> request.put(`/api/brand/update/${data.id}`, data.putData)
 }

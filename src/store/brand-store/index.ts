@@ -19,7 +19,7 @@ import {getDataFromCookie} from "../../utils/data-service"
             const respons = await brand.get(data)
             //    console.log(respons)
             if(respons.status === 200){
-                set({dataBrands: respons?.data?.data});
+                set({dataBrands: respons?.data?.data?.brands});
                 //    set({totlCount: respons?.data?.count})
             }
             set({isLoader: false})
@@ -52,10 +52,9 @@ import {getDataFromCookie} from "../../utils/data-service"
         deleteBrand: async(id)=>{
             try{
             const respons = await brand.delete(id)
-            //    console.log(respons)
             if(respons.status === 200){
                 set((state)=>({dataBrands: state.dataBrands.filter((el:any)=>el.id!== id)})) 
-                set((state)=>({totlCount: state.totlCount -= 1}))
+                // set((state)=>({totlCount: state.totlCount -= 1}))
                 toast.success("Deleted successfully")
             }
             }catch(error:any){
@@ -78,3 +77,4 @@ import {getDataFromCookie} from "../../utils/data-service"
     }))
 
     export default useBrandStore
+

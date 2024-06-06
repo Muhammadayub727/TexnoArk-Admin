@@ -26,7 +26,7 @@ const style = {
     
     interface propsData{
         title: string;
-        id?: string;
+        id?: string ;
         data?: any;
     }
     
