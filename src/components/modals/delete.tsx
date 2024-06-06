@@ -9,7 +9,7 @@ import useBrandStore from "../../store/brand-store";
 
 
 
-    export default function FadeMenu({id , title}:{id:number , title : string}) {
+    export default function FadeMenu({id , title}:{id:string , title : string}) {
         const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
         const open = Boolean(anchorEl);
         const handleClick = (event: React.MouseEvent<HTMLElement>) => {

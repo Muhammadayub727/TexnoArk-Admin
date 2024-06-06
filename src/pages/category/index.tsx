@@ -33,8 +33,8 @@ function Index() {
     return (
         <>
             <ToastContainer />
-            <div className="py-3">
-                <div className="w-96 flex">
+            <div className="py-3 flex justify-between items-center">
+                <div className="w-96 ">
                     <Paper
                         component="form"
                         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
@@ -50,8 +50,8 @@ function Index() {
                             <SearchIcon />
                         </IconButton>
                     </Paper>
-                    <ModalCategory title="post" />
                 </div>
+                    <ModalCategory title="post" />
             </div>
             <GlobalTable heders={theader} body={dataCategory} skelatonLoader={isLoader} />
         </>

@@ -3,7 +3,6 @@ import { create } from 'zustand' ;
 import { toast } from 'react-toastify'; 
 import { category ,StoreCategory } from '../../interface/category';
 
-
 const useCategoryStore = create <StoreCategory> ((set)=>({
     isLoader: false,
     dataCategory: [],
@@ -11,8 +10,14 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
         getDataCategory : async(data)=>{
             try{
                 set({isLoader: true})
-                const respons = await category.getCatigory(data)
-            //    console.log(respons)
+                let respons
+                if (data.search) {
+                     respons = await category.getCatigory(data) 
+                    }else{
+                    respons = await category.getCatigoryOnly(data) 
+
+                }
+               console.log(respons)
                 if(respons.status === 200){
                     set({dataCategory: respons?.data?.data?.categories});
                     set({totlCount: respons?.data?.data?.count})

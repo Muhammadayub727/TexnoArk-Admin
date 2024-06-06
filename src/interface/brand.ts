@@ -22,7 +22,7 @@ interface Brand{
     get : (data:getBrand)=> any,
     
     post : (data:any)=> any,
-    delete : (id:number)=> any,
+    delete : (id:string)=> any,
     update : (data:UpdateData)=> any,
 }
 
@@ -33,7 +33,7 @@ export interface StoreBrand {
     getBrand: (data:getBrand)=> Promise <any>;
 
     postBrand: (data:any)=> Promise <any>;
-    deleteBrand: (id:number)=> Promise <any>;
+    deleteBrand: (id:string)=> Promise <any>;
     updateBrand: (data:UpdateData)=> Promise <any>;
 }
 
