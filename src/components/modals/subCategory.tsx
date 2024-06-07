@@ -8,55 +8,54 @@ import { Button, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import { useParams } from "react-router-dom";
 
-import useCategoryStore from "../../store/category-store";
+import useSubCategoryStore from "../../store/sub-category";
 import {postCategory} from "../../interface/category"
 
 
+
 const style = {
-        position: "absolute" as "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 400,
-        bgcolor: "background.paper",
-        border: "2px solid #000",
-        boxShadow: 24,
-        p: 4,
-    };
-    
-    interface propsData{
-        title: string;
-        id?: string ;
-        data?: any;
-    }
-    
-    export default function BasicModal({title , id , data}:propsData) {
-        const { postDatacategory , updateDataCategory } = useCategoryStore();
-    
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
+
+interface propsData{
+    title: string;
+    id?: string;
+    data?: any;
+}
+
+export default function BasicModal({title , id , data}:propsData) {
+        const { postDataSubCatigory , updateDataSubCatigory } = useSubCategoryStore();
+
         const [open, setOpen] = React.useState(false);
         const handleOpen = () => setOpen(true);
         const handleClose = () => setOpen(false);
     
-        /// my code start <-----------------------------
     
         const { subcategory } = useParams();
         const parentCategoryId = Number(subcategory);
         
         const validationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
-        category_id: Yup.number().min(0, "must be at least greater than 0").required("Position is required"),
         });
     
         const initialValues: postCategory = {
-        name: data?.category_name || "", 
-        parent_category_id: data?.category_id || "",
+        name: data?.name || "", 
         };
     
         const handelSubmit = async (value:postCategory ) => {
         console.log(value);
         const postValue = { ... value , parent_category_id:parentCategoryId }
+    
         if(!id){
-            const status = await postDatacategory(postValue);
+            const status = await postDataSubCatigory(postValue);
             if (status === 201) {
             toast.success("success full");
             handleClose();
@@ -66,7 +65,7 @@ const style = {
             }
         }else{
             const updateData= {id:id, updateData : postValue}
-            const status = await updateDataCategory(updateData);
+            const status = await updateDataSubCatigory(updateData);
             if (status === 200) {
             toast.success("update success full"); 
             handleClose();
@@ -77,7 +76,6 @@ const style = {
         }
         };
     
-        // my code end <--------------------------------
     
         return (
         <div>
@@ -85,15 +83,15 @@ const style = {
             title == "post" ? 
             <button
             onClick={handleOpen}
-            className="py-2 px-6 text-white font-semibold bg-[#D52200] hover:bg-[#9c4837] active:bg-[#D52200] duration-200 rounded-lg"
+            className="py-2 px-6 text-white font-semibold bg-[#1EB91E] hover:bg-[#1EB91E] active:bg-[#1EB91E] duration-200 rounded-lg"
             >
-            To add
+            SubCategory
             </button> : 
             <Button
             color="inherit"
             onClick={handleOpen}
             sx={{ 
-                color: '#767676' // HEX formatida rang
+                color: '#767676'
             }}
             >
             <EditIcon  />
@@ -119,30 +117,14 @@ const style = {
                     </h1>
                     <Field
                     as={TextField}
-                    label="Category name"
+                    label="Supcategory name"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                     type="text"
-                    name="category_name"
+                    name="name"
                     className=" w-[100%]  mb-3 outline-none py-0"
                     helperText={
                         <ErrorMessage
-                        name="category_name"
-                        component="p"
-                        className="mb-3 text-red-500 text-center"
-                        />
-                    }
-                    />
-    
-                    <Field
-                    as={TextField}
-                    label="Positon number"
-                    sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                    type="number"
-                    name="positon"
-                    className=" w-[100%]  mb-3 outline-none py-0"
-                    helperText={
-                        <ErrorMessage
-                        name="positon"
+                        name="name"
                         component="p"
                         className="mb-3 text-red-500 text-center"
                         />
@@ -150,12 +132,12 @@ const style = {
                     />
                     
                     <Button
-                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
+                    sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#1EB91E", "&:hover" :{background: "#1EB91E"} }}
                     variant="contained"
                     type="submit"
                     className="w-[100%] py-3"
                     >
-                    to add
+                    Sub Category
                     </Button>
                 </Form>
                 </Formik>
@@ -163,4 +145,4 @@ const style = {
             </Modal>
         </div>
         );
-    }
+}

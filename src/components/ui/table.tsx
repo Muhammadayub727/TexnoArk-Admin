@@ -10,10 +10,10 @@ import {
     TableSortLabel,
     Paper,
     Skeleton,
-    // Button,
+    Button,
 } from "@mui/material";
-    // import VisibilityIcon from '@mui/icons-material/Visibility';
-    // import { useNavigate } from "react-router-dom";
+    import VisibilityIcon from '@mui/icons-material/Visibility';
+    import { useNavigate } from "react-router-dom";
 
     import { Props } from "../../interface/global";
     import  ModalBrand from "../modals/brand"
@@ -24,7 +24,7 @@ import {
 
     function GLobalTable({ heders, body, skelatonLoader }: Props) {
 
-        // const navigate = useNavigate();
+        const navigate = useNavigate();
         // const [searchPaams] = useSearchParams();
         // const page = Number(searchPaams.get("page")) || 1;
         // const limit = Number(searchPaams.get("limit")) || 8;
@@ -77,7 +77,7 @@ import {
                                     :heder.value == "action2" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                                     <ModalCategory title="put" id={body?.id} data={body}/>
-                                    {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
+                                    <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                                     </div>
                                     :heder.value == "action3" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>

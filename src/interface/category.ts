@@ -1,8 +1,10 @@
 import request from "../service/config"
 
-export interface postCategory{
-    name: string, 
+export interface postCategory {
+    name: string;
+    parent_category_id?:string ;
 }
+
 
 // export interface UpdateCategory {
 //     id:number;

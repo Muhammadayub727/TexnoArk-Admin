@@ -12,12 +12,12 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
                 set({isLoader: true})
                 let respons
                 if (data.search) {
-                     respons = await category.getCatigory(data) 
+                    respons = await category.getCatigory(data) 
                     }else{
                     respons = await category.getCatigoryOnly(data) 
 
                 }
-               console.log(respons)
+            //    console.log(respons)
                 if(respons.status === 200){
                     set({dataCategory: respons?.data?.data?.categories});
                     set({totlCount: respons?.data?.data?.count})

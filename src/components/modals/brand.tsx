@@ -32,7 +32,7 @@ interface PropsData {
 export default function BasicModal({ title, id, data }: PropsData) {
   const { postBrand } = useBrandStore();
   const { getDataCategory, dataCategory } = useCategoryStore();
-  console.log(dataCategory, "ddffdfddddddddddd");
+  // console.log(dataCategory, "ddffdfddddddddddd");
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,7 +40,7 @@ export default function BasicModal({ title, id, data }: PropsData) {
 
   React.useEffect(() => {
     getDataCategory({ limit: 10, page: 1 });
-    console.log(dataCategory,"testsetssvcct");
+    // console.log(dataCategory,"testsetssvcct");
     
   }, []);
 
