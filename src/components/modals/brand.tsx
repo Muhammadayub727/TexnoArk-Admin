@@ -25,7 +25,7 @@ const style = {
 
 interface PropsData {
   title: string;
-  id?: number | string;
+  id?:string;
   data?: any;
 }
 

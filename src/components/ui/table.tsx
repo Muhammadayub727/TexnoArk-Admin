@@ -91,7 +91,7 @@ import {
                             </TableRow>
                         })
                         : <TableRow>
-                            <TableCell colSpan={heders?.length}>No information yet</TableCell>
+                            <TableCell colSpan={heders?.length}>No Product</TableCell>
                         </TableRow>
                     }
                     </TableBody>

@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { toast } from "react-toastify";
-import * as Yup from "yup";
+import { brandValidationSchema } from "../../utils/validations";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, MenuItem, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
@@ -46,20 +46,12 @@ const style = {
     }, []);
 
 
-
-    const validationSchema = Yup.object().shape({
-        name: Yup.string().required("Name is required"),
-        brand_id: Yup.number().min(0, "must be at least greater than 0"),
-        // position: Yup.number().min(0, "must be at least greater than 0"),
-    });
-
     const initialValues: postData = {
         name: data?.name || "", 
         brand_id: data?.brand_id || "",
     };
 
     const handelSubmit = async (value:postData ) => {
-        // const postValue = { name: value.name , parent_category_id:0 }
         if(!id){
         const status = await postBrandCategory(value);
         if (status === 201) {
@@ -112,7 +104,7 @@ const style = {
             <Box sx={style}>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={brandValidationSchema}
                 onSubmit={handelSubmit}
             >
                 <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">

@@ -35,7 +35,7 @@ function index() {
     const theder = [
         {title: "S/N" , value:"t/r"},
         {title: "Brand Category" , value:"name"},
-        {title: "Action" , value:"action4"}
+        {title: "Action" , value:"action5"}
     ]
 
     const hendalChange = (e:any)=>{
