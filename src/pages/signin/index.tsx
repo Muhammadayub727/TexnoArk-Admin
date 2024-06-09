@@ -37,7 +37,7 @@ const Index = () => {
                 phone_number: formattedphone_number,
             };
             const response = await auth.signin(formattedValues)
-            if (response.status === 200) {
+            if (response.status === 201) {
                 setDataToCookie("access_token", response?.data?.data?.token);
                 setDataToCookie("admin_id", response?.data?.data?.admin?.id)
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})

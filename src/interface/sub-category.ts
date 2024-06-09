@@ -42,7 +42,7 @@ export interface StoreSubCategory {
 
 export const subCategory:SubCategory = {
     getSubCatigory: (data)=> request.get(`/sub-category/search/${data?.id}?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    deleteSubCatigory: (id)=> request.delete(`/sub-category/${id}`),
-    postSubCatigory: (data)=> request.post("/sub-category" , data),
-    updateSubCatigory: (data)=> request.patch(`/sub-category/${data.id}`, data.updateData),
+    deleteSubCatigory: (id)=> request.delete(`/sub-category/delete/${id}`),
+    postSubCatigory: (data)=> request.post("/sub-category/create" , data),
+    updateSubCatigory: (data)=> request.patch(`/sub-category/update/${data.id}`, data.updateData),
 }
