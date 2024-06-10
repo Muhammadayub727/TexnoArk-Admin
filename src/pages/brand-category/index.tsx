@@ -36,7 +36,7 @@ function index() {
         {title: "S/N" , value:"t/r"},
         {title: "Brand Category" , value:"name"},
         {title: "Brand ID" , value:"brand_id"},
-        {title: "Action" , value:"action5"}
+        {title: "Action" , value:"action7"}
     ]
 
     const hendalChange = (e:any)=>{

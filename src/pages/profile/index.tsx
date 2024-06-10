@@ -17,7 +17,7 @@ const Index = () => {
 
     const getAdminDataTexno = async(id:number) => {
         try{
-            const respons = await auth.admin_id(id)
+            const respons = await auth.getAdminId(id)
             if(respons.status === 200){
                 setAdminData(respons.data)
             }
@@ -49,7 +49,7 @@ const Index = () => {
 
     const editAdmin = async(id:number) => {
         try{
-            const response = await auth.admin_id(id)
+            const response = await auth.getAdminId(id)
             if(response.status === 200){
                 navigate("/edit")
             }   

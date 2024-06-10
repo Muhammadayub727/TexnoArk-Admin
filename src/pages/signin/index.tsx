@@ -40,7 +40,7 @@ const Index = () => {
             if (response.status === 201) {
                 setDataToCookie("access_token", response?.data?.data?.tokens?.access_token);
                 setDataToCookie("refresh_token", response?.data?.data?.tokens?.refresh_token);
-                setDataToCookie("admin_data", response?.data?.data?.admin);
+                // setDataToCookie("admin_data", response?.data?.data?.admin_data);
                 setDataToCookie("admin_id", response?.data?.data?.data?.id);
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
