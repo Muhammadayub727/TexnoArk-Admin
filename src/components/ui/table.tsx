@@ -94,6 +94,7 @@ import {
                                     :heder.value == "action6" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="products"/></div>
                                     <SubCategory title="put" id={body?.id} data={body}/>
+                                    <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/products/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                                     </div>
                                     : heder.value == "t/r" ? <p>{index + 1 }</p>
                                     : (body[heder.value])

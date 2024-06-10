@@ -23,7 +23,7 @@ interface Category{
     getCatigory : (data:GetCategory)=> any,
     getCatigoryOnly : (data:GetCategory)=> any,
     postCatigory : (data:postCategory)=> any,
-    deleteCategory : (id:number)=> any,
+    deleteCategory : (id:string)=> any,
     updateCategory : (data:UpdateCategory)=> any,
 }
 
