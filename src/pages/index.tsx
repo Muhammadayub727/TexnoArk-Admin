@@ -9,8 +9,9 @@ import Brand from "./brand"
 import Settings from "./settings";
 import SubCategory from "./category/subCategory"
 import BrandCategory from "./brand-category"
+import ProductDetail from "./products/product-detail"
 
 
 
 
-export { SignIn, SignUP, Error, Main , Category,Product,Brand,Settings,SubCategory,BrandCategory}
+export { SignIn, SignUP, Error, Main , Category,Product,Brand,Settings,SubCategory,BrandCategory,ProductDetail}
