@@ -6,6 +6,9 @@ import Fade from '@mui/material/Fade';
 import DeleteIcon from "@mui/icons-material/Delete";
 import useCategoryStore from "../../store/category-store";
 import useBrandStore from "../../store/brand-store";
+import StoreSubCategory from "../../store/sub-category";
+import StoreBrandCategory from "../../store/brand-category";
+import StoreProduct from "../../store/product-store";
 
 
 
@@ -21,7 +24,11 @@ import useBrandStore from "../../store/brand-store";
     
     const {deleteBrand} = useBrandStore();
     const {deleteDataCategory} = useCategoryStore()
+    const {deleteDataSubCatigory} = StoreSubCategory()
+    const {deleteBrandCategory} = StoreBrandCategory()
+    const {deleteProduct} = StoreProduct()
     
+
         
         const deleteData = async() => {
         if(title == "brand"){
@@ -35,12 +42,49 @@ import useBrandStore from "../../store/brand-store";
                 toast.error("Error " + err?.message)
                 console.log(err);
             }
-        }else if (title == "category"){
+        }
+        else if (title == "category"){
             try{
                 const staus = await deleteDataCategory(id)
             if(staus === 200){
                 handleClose()
                 toast.success("Category deleted successfully")
+            } 
+            }catch(err:any){
+                toast.error("Error " + err?.message)
+                console.log(err);
+            }
+        }
+        else if (title == "subCategory"){
+            try{
+                const staus = await deleteDataSubCatigory(id)
+            if(staus === 200){
+                handleClose()
+                toast.success("SubCategory deleted successfully")
+            } 
+            }catch(err:any){
+                toast.error("Error " + err?.message)
+                console.log(err);
+            }
+        }
+        else if (title == "brandCategory"){
+            try{
+                const staus = await deleteBrandCategory(id)
+            if(staus === 200){
+                handleClose()
+                toast.success("Brand Category deleted successfully")
+            } 
+            }catch(err:any){
+                toast.error("Error " + err?.message)
+                console.log(err);
+            }
+        }
+        else if (title == "products"){
+            try{
+                const staus = await deleteProduct(id)
+            if(staus === 200){
+                handleClose()
+                toast.success("Product deleted successfully")
             } 
             }catch(err:any){
                 toast.error("Error " + err?.message)

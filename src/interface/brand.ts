@@ -40,7 +40,7 @@ export interface StoreBrand {
     totlCount:number;
     getBrand: (data:getBrand)=> Promise <any>;
     postBrand: (data:any)=> Promise <any>;
-    deleteBrand: (id:number)=> Promise <any>;
+    deleteBrand: (id:string)=> Promise <any>;
     updateBrand: (data:UpdateData)=> Promise <any>;
     getCategoryId: (data:GetCategoryId)=> Promise <any>;
 

@@ -26,7 +26,7 @@ export interface GetCategoryBrandId{
 interface BrandCatigorty{
     get : (data:getBrand)=> any,
     post : (data:any)=> any,
-    delete : (id:number)=> any,
+    delete : (id:string)=> any,
     update : (data:UpdateData)=> any,
     getCategoryBrandId:(data:GetCategoryBrandId)=>any,
 }
@@ -39,7 +39,7 @@ export interface StoreBrandCategory {
     totlCountBrandCategory:number;
     getBrandCategory: (data:getBrand)=> Promise <any>;
     postBrandCategory: (data:any)=> Promise <any>;
-    deleteBrandCategory: (id:number)=> Promise <any>;
+    deleteBrandCategory: (id:string)=> Promise <any>;
     updateBrandCategory: (data:UpdateData)=> Promise <any>;
     getCategoryBrandId: (data:GetCategoryBrandId)=> Promise <any>;
 }

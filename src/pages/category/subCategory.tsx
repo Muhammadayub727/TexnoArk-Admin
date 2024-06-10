@@ -37,7 +37,7 @@ function subcategory() {
          {title: "S/N" , value:"t/r"},
          {title: "Subcategory" , value:"name"},
          {title: "Parent ID" , value:"parent_category_id"},
-         {title: "Action" , value:"action3"}
+         {title: "Action" , value:"action4"}
          ]
       const hendalChange = (e:any)=>{
          const search = e.target.value;

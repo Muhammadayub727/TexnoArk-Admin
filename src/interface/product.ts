@@ -28,7 +28,7 @@ export interface ProductsId {
 interface Product{
     get : (data:getProduct)=> any,
     post : (data:any)=> any,
-    delete : (id:number)=> any,
+    delete : (id:string)=> any,
     update : (data:UpdateData)=> any,
     getId : (id:number)=> any,
 }
@@ -40,7 +40,7 @@ export interface StoreProduct{
     productsId: ProductsId | null
     getProduct: (data:getProduct)=> Promise <any>;
     postProduct: (data:any)=> Promise <any>;
-    deleteProduct: (id:number)=> Promise <any>;
+    deleteProduct: (id:string)=> Promise <any>;
     updateProduct: (data:UpdateData)=> Promise <any>;
     getProductId: (id:number)=> Promise <any>;
 }

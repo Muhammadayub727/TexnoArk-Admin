@@ -71,8 +71,8 @@ import {
                                 heders?.map((heder, index2)=>{
                                 return <TableCell key={index2}>{
                                     heder.value == "action" ? <div className="flex items-center gap-2">
-                                        <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></div>
-                                        <ModalBrand title="put" id={body?.id} data={body}/>
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></div>
+                                    <ModalBrand title="put" id={body?.id} data={body}/>
                                     </div>
                                     :heder.value == "action2" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
@@ -82,7 +82,19 @@ import {
                                     :heder.value == "action3" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                                     <SubCategory title="put" id={body?.id} data={body}/>
-                                </div>
+                                    </div>
+                                    :heder.value == "action4" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="subCategory"/></div>
+                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    </div>
+                                    :heder.value == "action5" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="brandCategory"/></div>
+                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    </div>
+                                    :heder.value == "action6" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="products"/></div>
+                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    </div>
                                     : heder.value == "t/r" ? <p>{index + 1 }</p>
                                     : (body[heder.value])
                                 }</TableCell>

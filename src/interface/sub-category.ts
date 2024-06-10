@@ -23,7 +23,7 @@ export interface GetCategory{
 interface SubCategory{
     getSubCatigory : (data:GetCategory)=> any,
     postSubCatigory : (data:postCategory)=> any,
-    deleteSubCatigory : (id:number)=> any,
+    deleteSubCatigory : (id:string)=> any,
     updateSubCatigory : (data:UpdateCategory)=> any,
 }
 
@@ -33,7 +33,7 @@ export interface StoreSubCategory {
     totlCount:number;
     getDataSubCatigory: (data:GetCategory)=> Promise <any>;
     postDataSubCatigory: (data:postCategory)=> Promise <any>;
-    deleteDataSubCatigory: (id:number)=> Promise <any>;
+    deleteDataSubCatigory: (id:string)=> Promise <any>;
     updateDataSubCatigory: (data:UpdateCategory)=> Promise <any>;
 }
 

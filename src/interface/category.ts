@@ -32,7 +32,7 @@ export interface StoreCategory {
     dataCategory:any[];
     totlCount:number;
     getDataCategory: (data:GetCategory)=> Promise <any>;
-    deleteDataCategory: (id:number)=> Promise <any>;
+    deleteDataCategory: (id:string)=> Promise <any>;
     postDatacategory: (data:postCategory)=> Promise <any>;
     updateDataCategory: (data:UpdateCategory)=> Promise <any>;
 }

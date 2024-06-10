@@ -43,7 +43,7 @@ function index() {
     {title: "S/N" , value:"t/r"},
     {title: "Product name" , value:"name"},
     {title: "Price" , value:"price"},
-    {title: "Action" , value:"action7"},
+    {title: "Action" , value:"action6"},
   ]
 
   const handleSearchChange = (e:any) => {
