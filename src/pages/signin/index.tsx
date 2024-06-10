@@ -38,8 +38,10 @@ const Index = () => {
             };
             const response = await auth.signin(formattedValues)
             if (response.status === 201) {
-                setDataToCookie("access_token", response?.data?.data?.token);
-                setDataToCookie("admin_id", response?.data?.data?.admin?.id)
+                setDataToCookie("access_token", response?.data?.data?.tokens?.access_token);
+                setDataToCookie("refresh_token", response?.data?.data?.tokens?.refresh_token);
+                setDataToCookie("admin_data", response?.data?.data?.admin);
+                setDataToCookie("admin_id", response?.data?.data?.data?.id);
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
             }
