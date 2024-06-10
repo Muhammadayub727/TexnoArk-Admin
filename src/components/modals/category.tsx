@@ -36,13 +36,10 @@ const style = {
         const handleOpen = () => setOpen(true);
         const handleClose = () => setOpen(false);
     
-        /// my code start <-----------------------------
     
     
         const validationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
-        // parent_category_id: Yup.number().min(0, "must be at least greater than 0"),
-        // position: Yup.number().min(0, "must be at least greater than 0"),
         });
     
         const initialValues: postCategory = {
@@ -50,7 +47,6 @@ const style = {
         };
     
         const handelSubmit = async (value:postCategory ) => {
-        // const postValue = { name: value.name , parent_category_id:0 }
         if(!id){
             const status = await postDatacategory(value);
             if (status === 201) {
@@ -67,13 +63,12 @@ const style = {
             toast.success("update success full"); 
             handleClose();
             } else {
-            toast.error("Error :" + status);
-            handleClose();
+                toast.error("Error :" + status);
+                handleClose();
             }
-        }
+            }
         };
     
-        // my code end <--------------------------------
     
         return (
         <div>
@@ -89,7 +84,7 @@ const style = {
             color="inherit"
             onClick={handleOpen}
             sx={{ 
-                color: '#767676' // HEX formatida rang
+                color: '#767676' 
             }}
             >
             <EditIcon  />

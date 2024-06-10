@@ -6,7 +6,7 @@ export interface postCategory{
 }
 
 export interface UpdateCategory {
-    id:number;
+    id:string;
     updateData : postCategory
 }
 
