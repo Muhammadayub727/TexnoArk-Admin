@@ -47,15 +47,10 @@ function index() {
                 />
                     
                 }
-            {/* <img  className=" max-h-[450px] w-full h-full" src={product?.image_url ? product?.image_url[0] : "https://i.pinimg.com/564x/0c/bb/aa/0cbbaab0deff7f188a7762d9569bf1b3.jpg"} alt={product?.product_name} /> */}
                 </div>
                 <div className="p-2 md:max-w-[330px] lg:max-w-[550px] w-full">
             <h1 className="text-center text-[22px]">{productsId?.product?.name}</h1>
             <p className="py-3 text-gray-600">Product description : {productsId?.product_detail?.description}</p>
-            {/* <p className="flex items-center justify-between pb-[2px] border-b  mb-2 ">Sifati : <Stack spacing={1} sx={{paddingY:1}}>
-                <Rating name="size-medium" defaultValue={4} size="large" />
-                </Stack>
-            </p> */}
             <p className="flex items-center justify-between pb-[2px] border-b mb-2 ">Product colors : <span className=" text-gray-500 pl-2"> {productsId?.product_detail?.colors && productsId?.product_detail?.colors.map((el:any)=>{
             return <span key={el} className="   pl-3">{el}  </span>
             })}</span></p>
@@ -66,12 +61,6 @@ function index() {
             <div className='flex items-center justify-between'>
 
                 <div className="flex items-center gap-3 ">
-                {/* <IconButton aria-label="add to favorites" onClick={()=>{btnLike(product?.product_id)}} >
-                    <FavoriteIcon fontSize="medium"/>
-                </IconButton>
-                <IconButton aria-label="add to favorites"  >
-                    <ShoppingCartIcon fontSize="medium"/>
-                </IconButton> */}
                 </div>
             </div>
 
@@ -105,14 +94,13 @@ function index() {
 
 
                 : <div className="w-full h-full ">
-                {/* <button className=" py-2 px-2 rounded-md mb-5 hover:shadow-md duration-300"><KeyboardReturnIcon/></button> */}
                 <div className="">
                     <div className="flex flex-col gap-2 max-w-[400px]">
                     <h1 className="flex items-center justify-between pb-1 border-b ">Product name : <span className="text-[#D56E00] font-medium">{productsId?.product?.name}</span></h1>
                     <p className="flex items-center justify-between pb-1 border-b ">Product price : <span className="text-[#D56E00] font-medium">{productsId?.product?.price} $</span></p>
                     <div className="flex items-center justify-between">
                         <p>Add product details :</p>
-                        <ProductDrawer id={productId} />
+                        <ProductDrawer/>
                     </div>
                     </div>
                 </div>
