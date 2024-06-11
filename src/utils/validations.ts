@@ -38,7 +38,7 @@ export const brandValidationSchema = Yup.object().shape({
 });
 
 //-----------------Br-Category----------------//
-export const BrandValidationSchema = Yup.object().shape({
+export const brandCategoryValidationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
         brand_id: Yup.number().min(0, "must be at least greater than 0"),
 });

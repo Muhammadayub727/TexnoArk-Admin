@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { toast } from "react-toastify";
-import { brandValidationSchema } from "../../utils/validations";
+import { brandCategoryValidationSchema } from "../../utils/validations";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, MenuItem, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
@@ -52,6 +52,7 @@ const style = {
     };
 
     const handelSubmit = async (value:postData ) => {
+        console.log("njknjkn")
         if(!id){
         const status = await postBrandCategory(value);
         if (status === 201) {
@@ -104,7 +105,7 @@ const style = {
             <Box sx={style}>
             <Formik
                 initialValues={initialValues}
-                validationSchema={brandValidationSchema}
+                validationSchema={brandCategoryValidationSchema}
                 onSubmit={handelSubmit}
             >
                 <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">

@@ -18,8 +18,9 @@ const Index = () => {
     const getAdminDataTexno = async(id:number) => {
         try{
             const respons = await auth.getAdminId(id)
+            // console.log(respons)
             if(respons.status === 200){
-                setAdminData(respons.data)
+                setAdminData(respons.data.data)
             }
         }catch(err){
             console.log(err)
@@ -28,6 +29,7 @@ const Index = () => {
 
     useEffect(()=>{
         const admin_id = Number(getDataFromCookie("admin_id"));
+        // console.log(admin_id)
         getAdminDataTexno(admin_id);
     
     },[]);
@@ -58,6 +60,7 @@ const Index = () => {
         }
     }
 
+    console.log(admin_data)
     return (
         <div className="h-[623px] items-center justify-center flex-col gap-8 p-5 bg-[#FFF] rounded-[10px]">
             <div className="flex">
@@ -91,7 +94,7 @@ const Index = () => {
 
                         <div className="w-[330px] pt-10">
                             <h1  className="font-semibold ml-[20px] text-lg text-gray-600 ">Created_Data:{admin_data?.createdAt ? admin_data?.createdAt.slice(0, 10) :"" }</h1>
-                            <h1  className="font-semibold ml-[20px] text-lg text-gray-600 ">Updated_Data:{admin_data?.updatedAt ? admin_data.updatedAt.slice(0,10) : ""}</h1>
+                            <h1  className="font-semibold ml-[20px] text-lg text-gray-600 ">Updated_Data:{admin_data?.lastUpdate ? admin_data.lastUpdateAt.slice(0,10) : ""}</h1>
                             <div className="flex ml-[20px] mt-3">
                                 <img src={del} className="justify-end w-[30px] h-[30px] duration-500 rounded-[10px] :hover:transform hover:scale-90 duration-500 cursor-pointer hover:bg-[#F0F0F0] mt-[270px] ml-[200px]" onClick={() => deleteAdmin(admin_data?.id)}/>
                                 <img src={edit} className="justify-end w-[30px] h-[30px] duration-500 rounded-[10px] :hover:transform hover:scale-90 duration-500 cursor-pointer hover:bg-[#F0F0F0] mt-[270px] ml-[10px]" onClick={() => editAdmin(admin_data?.id)}/>
