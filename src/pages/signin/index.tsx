@@ -44,7 +44,7 @@ const Index = () => {
                 setDataToCookie("admin_id", response?.data?.data?.data?.id);
                 Notification({title:"Tizimga muvaffaqiyatli kirdingiz",type:"success"})
                 setTimeout(()=>{navigate("/main")},1000)
-            }
+            } 
         } catch (error) {
             console.log(error)
             Notification({title:"Tizimga kirishda xatolik",type:"error"})
