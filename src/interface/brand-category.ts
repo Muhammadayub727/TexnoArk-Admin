@@ -1,7 +1,10 @@
 import request from "../service/config"
 
 export interface postData{
-    name: string;
+    name?: string;
+    price?: number| string;
+    category_id?:number;
+    brand_category_id?:number;
     brand_id?:number;
 }
 

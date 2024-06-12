@@ -20,6 +20,11 @@ import {
     import ModalCategory from "../modals/category";
     import ModalDelete from "../modals/delete"
     import SubCategory from "../modals/subCategory";
+    import ModalBrandCategory from "../modals/brand-single";
+    import ModalProduct from "../modals/m-product";
+    import ModalStock from "../modals/m-stock";
+    import ModalBrandSingle from "../modals/brand-single";
+
 
 
     function GLobalTable({ heders, body, skelatonLoader }: Props) {
@@ -85,16 +90,20 @@ import {
                                     </div>
                                     :heder.value == "action4" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="subCategory"/></div>
-                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    <ModalBrandCategory title="put" id={body?.id} data={body}/>
                                     </div>
                                     :heder.value == "action5" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="brandCategory"/></div>
-                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    <ModalProduct title="put" id={body?.id} data={body}/>
                                     </div>
                                     :heder.value == "action6" ? <div className="flex items-center gap-2">
                                     <div className=' text-gray-500'><ModalDelete id={body?.id} title="products"/></div>
-                                    <SubCategory title="put" id={body?.id} data={body}/>
+                                    <ModalBrandSingle title="put" id={body?.id} data={body}/>
                                     <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/products/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
+                                    </div>
+                                    :heder.value == "action7" ? <div className="flex items-center gap-2">
+                                    <div className=' text-gray-500'><ModalDelete id={body?.id} title="stock"/></div>
+                                    <ModalStock title="put" id={body?.id} data={body}/>
                                     </div>
                                     : heder.value == "t/r" ? <p>{index + 1 }</p>
                                     : heder.value == "image" ? <><img className="w-[120px] h-[40px] object-contain" src={body?.image} alt="brand logo" /></>

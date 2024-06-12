@@ -57,3 +57,13 @@ export const productDetailValidationSchema = Yup.object().shape({
         color: Yup.string().required("Position is required"),
         file: Yup.string().required("Image is required")
 });
+
+
+//-------------Stock-----------------------//
+
+export const stockValidationSchema = Yup.object().shape({
+        quantity: Yup.number().min(0, "must be at least greater than 0"),
+        category_id: Yup.number().min(0, "must be at least greater than 0"),
+        product_id: Yup.number().min(0, "must be at least greater than 0"),
+        brand_id: Yup.number().min(0, "must be at least greater than 0"),
+});

@@ -7,6 +7,7 @@ import useBrandStore from "../../store/brand-store";
 import StoreSubCategory from "../../store/sub-category";
 import StoreBrandCategory from "../../store/brand-category";
 import StoreProduct from "../../store/product-store";
+import useStockStore from "../../store/stock-store";
 
 export default function FadeMenu({ id, title }: { id: string; title: string }) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -24,6 +25,8 @@ export default function FadeMenu({ id, title }: { id: string; title: string }) {
     const { deleteDataSubCatigory } = StoreSubCategory();
     const { deleteBrandCategory } = StoreBrandCategory();
     const { deleteProduct } = StoreProduct();
+    const { deleteStock } = useStockStore();
+
 
     const deleteData = async () => {
         try {
@@ -43,6 +46,9 @@ export default function FadeMenu({ id, title }: { id: string; title: string }) {
                     break;
                 case "products":
                     status = await deleteProduct(id);
+                    break;
+                case "stock":
+                    status = await deleteStock(id);
                     break;
                 default:
                     throw new Error("Invalid title");

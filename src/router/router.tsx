@@ -4,6 +4,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import GrainIcon from '@mui/icons-material/Grain';
 import AppleIcon from '@mui/icons-material/Apple';
 import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
+import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 
 
 
@@ -33,6 +34,11 @@ export const routes: Route[] = [
         path: "/main/brand-category",
         content: "Brand Category",
         icon: <KeyboardCommandKeyIcon/>
+    },
+    {
+        path: "/main/stock",
+        content: "Stock",
+        icon: <Grid3x3Icon/>
     }
 ]
 
