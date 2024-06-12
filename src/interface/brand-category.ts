@@ -6,7 +6,7 @@ export interface postData{
 }
 
 export interface UpdateData{
-    id:string;
+    id:number;
     putData: postData;
 }
 

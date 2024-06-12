@@ -8,11 +8,21 @@ import useCategoryStore from "../../store/category-store";
 import Paper from "@mui/material/Paper";
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Index() {
     const [search, setSearch] = useState("");
     const [dataGet, setDataGet] = useState({ limit: 10, page: 1, search: search });
     const { getDataCategory, dataCategory, isLoader } = useCategoryStore();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const searchParam = params.get("search") || "";
+        setSearch(searchParam);
+        setDataGet((prevDataGet) => ({ ...prevDataGet, search: searchParam }));
+    }, [location.search]);
 
     useEffect(() => {
         getDataCategory(dataGet);
@@ -21,7 +31,9 @@ function Index() {
     const handleSearchChange = (e:any) => {
         const newSearch = e.target.value;
         setSearch(newSearch);
-        setDataGet({ ...dataGet, search: newSearch });
+        const newParams = new URLSearchParams(location.search);
+        newParams.set("search", newSearch);
+        navigate({ search: newParams.toString() });
     };
 
     const theader = [
@@ -34,14 +46,14 @@ function Index() {
         <>
             <ToastContainer />
             <div className="py-3 flex justify-between items-center">
-                <div className="w-96 ">
+                <div className="w-96">
                     <Paper
                         component="form"
                         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
                     >
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
-                            placeholder="Search Products"
+                            placeholder="Search Category"
                             inputProps={{ 'aria-label': 'search products' }}
                             onChange={handleSearchChange}
                             value={search}
@@ -51,7 +63,7 @@ function Index() {
                         </IconButton>
                     </Paper>
                 </div>
-                    <ModalCategory title="post" />
+                <ModalCategory title="post" />
             </div>
             <GlobalTable heders={theader} body={dataCategory} skelatonLoader={isLoader} />
         </>

@@ -97,6 +97,9 @@ import {
                                     <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/main/products/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                                     </div>
                                     : heder.value == "t/r" ? <p>{index + 1 }</p>
+                                    : heder.value == "image" ? <><img className="w-[120px] h-[40px] object-contain" src={body?.image} alt="brand logo" /></>
+                                    : heder.value == "price" ? <>{body?.price} $</> 
+                                    : heder.value == "product_id?.name" ? <>{body?.product_id?.name}</> 
                                     : (body[heder.value])
                                 }</TableCell>
                                 })

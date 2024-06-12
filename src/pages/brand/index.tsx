@@ -16,7 +16,7 @@ function Index() {
     }, [params]);
 
     const handleSearchChange = (e:any) => {
-        const newSearch = e.target.value || ""; // Ensure newSearch is always a string
+        const newSearch = e.target.value || ""; 
         setSearch(newSearch);
         setParams((prevParams) => ({ ...prevParams, search: newSearch }));
     };
@@ -24,6 +24,7 @@ function Index() {
     const headers = [
         { title: "S/N", value: "t/r" },
         { title: "Brand", value: "name" },
+        { title: "Brand Logo", value: "image" },
         { title: "Action", value: "action" }
     ];
 

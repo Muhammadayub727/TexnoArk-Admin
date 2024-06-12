@@ -8,8 +8,11 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import useBrandStore from "../../store/brand-store";
 import { postData } from "../../interface/brand";
-import { brandValidationSchema } from "../../utils/validations";
+import { brandValidationSchema, brandValidationSchemaUpdete } from "../../utils/validations";
 import useCategoryStore from "../../store/category-store";
+
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+
 
 const style = {
   position: "absolute" as "absolute",
@@ -30,7 +33,7 @@ interface PropsData {
 }
 
 export default function BasicModal({ title, id, data }: PropsData) {
-  const { postBrand } = useBrandStore();
+  const { postBrand,updateBrand } = useBrandStore();
   const { getDataCategory, dataCategory } = useCategoryStore();
   // console.log(dataCategory, "ddffdfddddddddddd");
 
@@ -51,7 +54,15 @@ export default function BasicModal({ title, id, data }: PropsData) {
     file: undefined,
   };
 
+  const initialValuesUpdete: postData = {
+    name: data?.name || "",
+    description: data?.description || "",
+    categoryId: data?.category_id || "",
+  };
+
   const handleSubmit = async (values: postData) => {
+    // console.log(values);
+    
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("description", values.description);
@@ -64,14 +75,12 @@ export default function BasicModal({ title, id, data }: PropsData) {
     if (!id) {
       status = await postBrand(formData);
     } else {
-      // const updateData = { id: id, putData: formData };
-      // status = await updateBrand(updateData);
+      const putData ={id:id , putData: {name:values?.name , description:values?.description , category_id:values?.category_id} }
+      status = await updateBrand(putData);
     }
 
     if (status === 201 || status === 200) {
-      toast.success(
-        title === "post" ? "Successfully added" : "Successfully updated"
-      );
+      toast.success(title === "post" ? "Successfully added" : "Successfully updated");
       handleClose();
     } else {
       toast.error("Error: " + status);
@@ -101,8 +110,8 @@ export default function BasicModal({ title, id, data }: PropsData) {
       >
         <Box sx={style}>
           <Formik
-            initialValues={initialValues}
-            validationSchema={brandValidationSchema}
+            initialValues={id ? initialValuesUpdete: initialValues}
+            validationSchema={id ? brandValidationSchemaUpdete : brandValidationSchema}
             onSubmit={handleSubmit}
           >
             {({ setFieldValue }) => (
@@ -110,36 +119,6 @@ export default function BasicModal({ title, id, data }: PropsData) {
                 <h1 className="text-center mb-2 text-[26px] font-bold">
                   {title === "post" ? "Add a brand" : "Edit a brand"}
                 </h1>
-                <Field
-                  as={TextField}
-                  label="Brand name"
-                  sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                  type="text"
-                  name="name"
-                  className="w-[100%] mb-3 outline-none py-0"
-                  helperText={
-                    <ErrorMessage
-                      name="name"
-                      component="p"
-                      className="mb-3 text-red-500 text-center"
-                    />
-                  }
-                />
-                <Field
-                  as={TextField}
-                  label="Brand description"
-                  sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                  type="text"
-                  name="description"
-                  className="w-[100%] mb-3 outline-none py-0"
-                  helperText={
-                    <ErrorMessage
-                      name="description"
-                      component="p"
-                      className="mb-3 text-red-500 text-center"
-                    />
-                  }
-                />
                 <Field
                   name="category_id"
                   type="text"
@@ -164,18 +143,58 @@ export default function BasicModal({ title, id, data }: PropsData) {
                     </MenuItem>
                   ))}
                 </Field>
-                <input
+                <Field
+                  as={TextField}
+                  label="Brand name"
+                  sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
+                  type="text"
+                  name="name"
+                  className="w-[100%] mb-3 outline-none py-0"
+                  helperText={
+                    <ErrorMessage
+                      name="name"
+                      component="p"
+                      className="mb-3 text-red-500 text-center"
+                    />
+                  }
+                />
+                {
+                  id ? "" : <div>
+                  <input
                   type="file"
                   name="file"
                   className="w-[100%] mb-3 outline-none py-0"
-                  onChange={(event: any) => {
+                  onChange={(event:any) => {
                     setFieldValue("file", event.currentTarget.files[0]);
                   }}
-                />
+                  />
                 <ErrorMessage
                   name="file"
                   component="div"
                   className="mb-3 text-red-500 text-center"
+                />
+                  </div>
+                }
+                <Field
+                  as={TextareaAutosize}
+                  minRows={4}
+                  placeholder="Enter brand description here"
+                  sx={{
+                    "& textarea": {
+                      color: "#000000",
+                      fontSize: "20px",
+                    },
+                  }}
+                  type="text"
+                  name="description"
+                  className="w-[100%] mb-3 outline-none py-0"
+                  helpertext={
+                    <ErrorMessage
+                      name="description"
+                      component="p"
+                      className="mb-3 text-red-500 text-center"
+                    />
+                  }
                 />
                 <Button
                   sx={{

@@ -17,7 +17,7 @@ function GlobalSearch({search , hendelChange }:PropsDataSerch) {
             sx={{p:"2px 4px", width:400 , alignItems: "center" , display: "flex"}}>
                 <InputBase
                 sx={{ml:1 , flex :1}}
-                placeholder="Qidiruv"
+                placeholder="Search Brand-Category"
                 value={search}
                 onChange={hendelChange}
                 inputProps={{"aria-label":"serch google maps"}}/>
